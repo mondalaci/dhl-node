@@ -1,0 +1,28 @@
+{
+  "name": "dhl-node",
+  "version": "1.0.0",
+  "description": "DHL Express Global Web Services from node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mondalaci/dhl-node.git"
+  },
+  "keywords": [
+    "dhl",
+    "node",
+    "webservice"
+  ],
+  "author": "Laszlo Monda",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mondalaci/dhl-node/issues"
+  },
+  "homepage": "https://github.com/mondalaci/dhl-node#readme",
+  "dependencies": {
+    "soap": "^0.23.0",
+    "xml-formatter": "^1.0.1"
+  }
+}
