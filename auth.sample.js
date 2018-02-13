@@ -1,4 +1,5 @@
 module.exports = {
     username: 'myUsername',
-    password: 'myPassword'
+    password: 'myPassword',
+    accountNumber: 000000000,
 };
