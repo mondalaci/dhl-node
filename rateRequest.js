@@ -37,15 +37,15 @@ let args = {
             Packages: {
                 RequestedPackages: {
                     attributes: {
-                        number: '1',
+                        number: 1,
                     },
                     Weight: {
-                        Value: '2.0'
+                        Value: 2
                     },
                     Dimensions: {
-                        Length: '13',
-                        Width: '12',
-                        Height: '9'
+                        Length: 13,
+                        Width: 12,
+                        Height: 9
                     }
                 }
             },
