@@ -101,6 +101,8 @@ soap.createClient(url, function(err, client) {
 
     client.createShipmentRequest(args, function(err, response) {
         console.log(JSON.stringify(response, null, 4));
+        const graphicImage = Buffer.from(response.LabelImage[0].GraphicImage, 'base64');
+        fs.writeFileSync('shipmentRequest.response.pdf', graphicImage);
     });
 
     fs.writeFileSync('shipmentRequest.request.xml', format(client.lastRequest));
