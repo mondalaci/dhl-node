@@ -67,7 +67,6 @@ soap.createClient(url, function(err, client) {
         fs.writeFileSync('rateRequest.response.xml', response);
     });
 
-    console.log(client)
     client.getRateRequest(args, function(err, response) {
         console.log(JSON.stringify(response, null, 4));
     });
