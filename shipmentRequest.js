@@ -19,7 +19,7 @@ let args = {
     RequestedShipment: {
         ShipmentInfo: {
             DropOffType: 'REQUEST_COURIER',
-            ServiceType: 'U',
+            ServiceType: 'Q',
             Account: auth.accountNumber,
             Currency: 'EUR',
             UnitOfMeasurement: 'SI',
