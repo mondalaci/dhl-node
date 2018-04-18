@@ -35,8 +35,24 @@ module.exports = {
             });
         });
     },
-    getIsoDateTime: function() {
-        return (new Date).toISOString();
+    getIsoDateTime: function g() {
+        const d = new Date();
+        const offset = d.getTimezoneOffset();
+        const offsetAbs = Math.abs(offset);
+        const offsetSign = offset / offsetAbs;
+        const offsetSignChar = offsetSign < 0 ? '-' : '+';
+        const offsetHoursAbs = Math.floor(offsetAbs / 60);
+        const offsetHoursSigned = offsetSign * offsetHoursAbs;
+        const offsetMinutesAbs = offsetAbs % 60;
+        return `${d.getUTCFullYear()}-\
+${d.getUTCMonth().toString().padStart(2, 0)}-\
+${d.getUTCDate().toString().padStart(2,0)}T\
+${d.getUTCHours().toString().padStart(2,0)}:\
+${d.getUTCMinutes().toString().padStart(2,0)}:\
+${d.getUTCSeconds().toString().padStart(2,0)}GMT\
+${offsetSignChar}\
+${offsetHoursAbs.toString().padStart(2,0)}:\
+${offsetMinutesAbs.toString().padStart(2,0)}`;
     },
     getMessageReference: function() {
         return Array(32).fill(0).map(x => Math.random().toString(36).charAt(2)).join('');
