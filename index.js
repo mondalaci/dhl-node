@@ -35,7 +35,7 @@ module.exports = {
             });
         });
     },
-    getIsoDateTime: function g() {
+    getIsoDateTime: function() {
         const d = new Date();
         const offset = d.getTimezoneOffset();
         const offsetAbs = Math.abs(offset);
@@ -45,7 +45,7 @@ module.exports = {
         const offsetHoursSigned = offsetSign * offsetHoursAbs;
         const offsetMinutesAbs = offsetAbs % 60;
         return `${d.getUTCFullYear()}-\
-${d.getUTCMonth().toString().padStart(2, 0)}-\
+${(d.getUTCMonth()+1).toString().padStart(2, 0)}-\
 ${d.getUTCDate().toString().padStart(2,0)}T\
 ${d.getUTCHours().toString().padStart(2,0)}:\
 ${d.getUTCMinutes().toString().padStart(2,0)}:\
