@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/mondalaci/dhl-node#readme",
   "dependencies": {
+    "country-data": "0.0.31",
     "soap": "^0.23.0",
     "xml-formatter": "^1.0.1"
   }
