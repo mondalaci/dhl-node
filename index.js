@@ -39,7 +39,7 @@ module.exports = {
     rateRequest: function(wsdlUrl, auth, req) {
         return wsdlRequest(wsdlUrl, 'getRateRequest', auth, req);
     },
-    shippingRequest: function(wsdlUrl, auth, req) {
+    shipmentRequest: function(wsdlUrl, auth, req) {
         return wsdlRequest(wsdlUrl, 'createShipmentRequest', auth, req);
     },
     trackingRequest: function(wsdlUrl, auth, req) {
