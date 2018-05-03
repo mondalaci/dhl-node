@@ -1,21 +1,10 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const util = require('util');
-const soap = require('soap');
 const format = require('xml-formatter');
 const auth = require('./auth');
+const dhl = require('./index');
 
-function getIsoDateTime() {
-    return (new Date).toISOString();
-}
-
-function getMessageReference() {
-    return Array(32).fill(0).map(x => Math.random().toString(36).charAt(2)).join('');
-}
-
-let url = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';
-
-let args = {
+let req = {
         ClientDetail: {
         },
         RequestedShipment: {
@@ -59,17 +48,10 @@ let args = {
         },
 };
 
-soap.createClient(url, function(err, client) {
-    let wsSecurity = new soap.WSSecurity(auth.username, auth.password)
-    client.setSecurity(wsSecurity);
-
-    client.on('response', response => {
-        fs.writeFileSync('rateRequest.response.xml', response);
-    });
-
-    client.getRateRequest(args, function(err, response) {
-        console.log(JSON.stringify(response, null, 4));
-    });
-
-    fs.writeFileSync('rateRequest.request.xml', format(client.lastRequest));
-});
+(async function() {
+    let wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';
+    const res = await dhl.rateRequest(wsdlUrl, auth, req);
+    console.log(JSON.stringify(res.response, null, 4));
+    fs.writeFileSync('rateRequest.response.xml', res.responseXml);
+    fs.writeFileSync('rateRequest.request.xml', format(res.requestXml));
+})();

@@ -39,6 +39,9 @@ module.exports = {
     shippingRequest: function(wsdlUrl, auth, req) {
         return wsdlRequest(wsdlUrl, 'createShipmentRequest', auth, req);
     },
+    rateRequest: function(wsdlUrl, auth, req) {
+        return wsdlRequest(wsdlUrl, 'getRateRequest', auth, req);
+    },
     getIsoDateTime: function() {
         const d = new Date();
         const offset = d.getTimezoneOffset();
