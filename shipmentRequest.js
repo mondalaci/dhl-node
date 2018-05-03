@@ -1,21 +1,10 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const util = require('util');
-const soap = require('soap');
 const format = require('xml-formatter');
 const auth = require('./auth');
+const dhl = require('./index');
 
-function getIsoDateTime() {
-    return (new Date).toISOString();
-}
-
-function getMessageReference() {
-    return Array(32).fill(0).map(x => Math.random().toString(36).charAt(2)).join('');
-}
-
-let url = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';
-
-let args = {
+const req = {
     RequestedShipment: {
         ShipmentInfo: {
             DropOffType: 'REQUEST_COURIER',
@@ -27,8 +16,8 @@ let args = {
             LabelType: 'PDF',
             LabelTemplate: 'ECOM26_84_001'
         },
-        ShipTimestamp: '2018-02-15T09:30:47GMT+01:00',
-        PickupLocationCloseTime: '16:12',
+        ShipTimestamp: dhl.getIsoDateTimeGmt(),
+        PickupLocationCloseTime: '23:59',
         SpecialPickupInstruction: 'fragile items',
         PickupLocation: 'west wing 3rd Floor',
         PaymentInfo: 'DDP',
@@ -91,19 +80,12 @@ let args = {
     },
 };
 
-soap.createClient(url, function(err, client) {
-    let wsSecurity = new soap.WSSecurity(auth.username, auth.password)
-    client.setSecurity(wsSecurity);
-
-    client.on('response', response => {
-        fs.writeFileSync('shipmentRequest.response.xml', response);
-    });
-
-    client.createShipmentRequest(args, function(err, response) {
-        console.log(JSON.stringify(response, null, 4));
-        const graphicImage = Buffer.from(response.LabelImage[0].GraphicImage, 'base64');
-        fs.writeFileSync('shipmentRequest.response.pdf', graphicImage);
-    });
-
-    fs.writeFileSync('shipmentRequest.request.xml', format(client.lastRequest));
-});
+(async function() {
+    const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';
+    const res = await dhl.shippingRequest(wsdlUrl, auth, req);
+    console.log(JSON.stringify(res.response, null, 4));
+    fs.writeFileSync('shipmentRequest.request.xml', format(res.requestXml));
+    fs.writeFileSync('shipmentRequest.response.xml', res.responseXml);
+    const graphicImage = Buffer.from(res.response.LabelImage[0].GraphicImage, 'base64');
+    fs.writeFileSync('shipmentRequest.response.pdf', graphicImage);
+})();
