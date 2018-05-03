@@ -4,16 +4,12 @@ const format = require('xml-formatter');
 const auth = require('./auth');
 const dhl = require('./index');
 
-function getIsoDateTime() {
-    return (new Date).toISOString();
-}
-
-let req = {
+const req = {
     trackingRequest: {
         TrackingRequest: {
             Request: {
                 ServiceHeader: {
-                    MessageTime: getIsoDateTime(),
+                    MessageTime: dhl.getIsoDateTime(),
                     MessageReference: dhl.getMessageReference()
                 }
             },

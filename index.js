@@ -46,6 +46,9 @@ module.exports = {
         return wsdlRequest(wsdlUrl, 'trackShipmentRequest', auth, req);
     },
     getIsoDateTime: function() {
+        return (new Date).toISOString();
+    },
+    getIsoDateTimeGmt: function() {
         const d = new Date();
         const offset = d.getTimezoneOffset();
         const offsetAbs = Math.abs(offset);

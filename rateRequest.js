@@ -4,7 +4,7 @@ const format = require('xml-formatter');
 const auth = require('./auth');
 const dhl = require('./index');
 
-let req = {
+const req = {
         ClientDetail: {
         },
         RequestedShipment: {
