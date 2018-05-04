@@ -36,7 +36,8 @@ function wsdlRequest(wsdlUrl, method, auth, req) {
 }
 
 module.exports = {
-    rateRequest: function(wsdlUrl, auth, req) {
+    rateRequest: function(auth, req) {
+        const wsdlUrl = 'https://wsbexpress.dhl.com:443/gbl/expressRateBook?WSDL';
         return wsdlRequest(wsdlUrl, 'getRateRequest', auth, req);
     },
     shipmentRequest: function(auth, req) {
@@ -46,6 +47,10 @@ module.exports = {
     trackingRequest: function(auth, req) {
         const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/glDHLExpressTrack?WSDL';
         return wsdlRequest(wsdlUrl, 'trackShipmentRequest', auth, req);
+    },
+    testRateRequest: function(auth, req) {
+        const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';
+        return wsdlRequest(wsdlUrl, 'getRateRequest', auth, req);
     },
     testShipmentRequest: function(auth, req) {
         const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';

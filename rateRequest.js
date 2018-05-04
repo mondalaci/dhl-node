@@ -49,8 +49,7 @@ const req = {
 };
 
 (async function() {
-    const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';
-    const res = await dhl.rateRequest(wsdlUrl, auth, req);
+    const res = await dhl.testRateRequest(auth, req);
     console.log(JSON.stringify(res.response, null, 4));
     fs.writeFileSync('rateRequest.response.xml', res.responseXml);
     fs.writeFileSync('rateRequest.request.xml', format(res.requestXml));
