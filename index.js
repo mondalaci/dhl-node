@@ -39,11 +39,16 @@ module.exports = {
     rateRequest: function(wsdlUrl, auth, req) {
         return wsdlRequest(wsdlUrl, 'getRateRequest', auth, req);
     },
-    shipmentRequest: function(wsdlUrl, auth, req) {
+    shipmentRequest: function(auth, req) {
+        const wsdlUrl = 'https://wsbexpress.dhl.com:443/gbl/expressRateBook?WSDL';
         return wsdlRequest(wsdlUrl, 'createShipmentRequest', auth, req);
     },
     trackingRequest: function(wsdlUrl, auth, req) {
         return wsdlRequest(wsdlUrl, 'trackShipmentRequest', auth, req);
+    },
+    testShipmentRequest: function(auth, req) {
+        const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL';
+        return wsdlRequest(wsdlUrl, 'createShipmentRequest', auth, req);
     },
     getIsoDateTime: function() {
         return (new Date).toISOString();
