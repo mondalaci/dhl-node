@@ -25,6 +25,6 @@ const req = {
 (async function() {
     const res = await dhl.trackingRequest(auth, req);
     console.log(JSON.stringify(res.response, null, 4));
-    fs.writeFileSync('trackShipmentRequest.response.xml', res.responseXml);
-    fs.writeFileSync('trackShipmentRequest.request.xml', format(res.requestXml));
+    fs.writeFileSync('trackingRequest.response.xml', res.responseXml);
+    fs.writeFileSync('trackingRequest.request.xml', format(res.requestXml));
 })();
