@@ -43,7 +43,8 @@ module.exports = {
         const wsdlUrl = 'https://wsbexpress.dhl.com:443/gbl/expressRateBook?WSDL';
         return wsdlRequest(wsdlUrl, 'createShipmentRequest', auth, req);
     },
-    trackingRequest: function(wsdlUrl, auth, req) {
+    trackingRequest: function(auth, req) {
+        const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/glDHLExpressTrack?WSDL';
         return wsdlRequest(wsdlUrl, 'trackShipmentRequest', auth, req);
     },
     testShipmentRequest: function(auth, req) {

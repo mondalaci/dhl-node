@@ -23,8 +23,7 @@ const req = {
 };
 
 (async function() {
-    const wsdlUrl = 'https://wsbexpress.dhl.com/sndpt/glDHLExpressTrack?WSDL';
-    const res = await dhl.trackingRequest(wsdlUrl, auth, req);
+    const res = await dhl.trackingRequest(auth, req);
     console.log(JSON.stringify(res.response, null, 4));
     fs.writeFileSync('trackShipmentRequest.response.xml', res.responseXml);
     fs.writeFileSync('trackShipmentRequest.request.xml', format(res.requestXml));
