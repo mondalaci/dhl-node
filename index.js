@@ -71,7 +71,6 @@ module.exports = {
         const offsetSign = offset / offsetAbs;
         const offsetSignChar = offsetSign < 0 ? '-' : '+';
         const offsetHoursAbs = Math.floor(offsetAbs / 60);
-        const offsetHoursSigned = offsetSign * offsetHoursAbs;
         const offsetMinutesAbs = offsetAbs % 60;
         return `${date.getUTCFullYear()}-\
 ${(date.getUTCMonth()+1).toString().padStart(2, 0)}-\
