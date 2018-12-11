@@ -64,8 +64,8 @@ module.exports = {
     getIsoDateTime: function() {
         return (new Date).toISOString();
     },
-    getIsoDateTimeGmt: function() {
-        const date = new Date();
+    getIsoDateTimeGmt: function(dateParam) {
+        const date = dateParam || new Date();
         const offset = date.getTimezoneOffset();
         const offsetAbs = Math.abs(offset);
         const offsetSign = offset / offsetAbs;
