@@ -86,6 +86,9 @@ ${offsetMinutesAbs.toString().padStart(2,0)}`;
         return Array(32).fill(0).map(x => Math.random().toString(36).charAt(2)).join('');
     },
     countryToCode: function(country) {
+        if (country === 'Vietnam') {
+            country = 'Viet Nam';
+        }
         return lookup.countries({name: country})[0].alpha2;
     }
 };
