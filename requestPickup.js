@@ -15,7 +15,7 @@ const req = {
             },
             UnitOfMeasurement: 'SI',
         },
-        PickupTimestamp: '2018-01-26T12:59:00 GMT+01:00',
+        PickupTimestamp: '2019-09-26T12:59:00 GMT+01:00',
         PickupLocationCloseTime: '17:00',
         SpecialPickupInstruction: 'Collect at reception',
         PickupLocation: 'Receptoin',
@@ -59,6 +59,9 @@ const req = {
         },
         Packages: {
             RequestedPackages: { // number="1">
+                attributes: {
+                    number: 1,
+                },
                 Weight: '12.0',
                 Dimensions: {
                     Length: 70,
