@@ -10,16 +10,16 @@ const req = {
             Request: {
                 ServiceHeader: {
                     MessageTime: dhl.getIsoDateTime(),
-                    MessageReference: dhl.getMessageReference()
-                }
+                    MessageReference: dhl.getMessageReference(),
+                },
             },
             AWBNumber: {
-                ArrayOfAWBNumberItem: [3898464710]
+                ArrayOfAWBNumberItem: [3898464710],
             },
             LevelOfDetails: 'ALL_CHECK_POINTS',
-            PiecesEnabled: 'B'
-        }
-    }
+            PiecesEnabled: 'B',
+        },
+    },
 };
 
 (async function() {

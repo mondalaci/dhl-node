@@ -14,7 +14,7 @@ const req = {
             UnitOfMeasurement: 'SI',
             PackagesCount: 1,
             LabelType: 'PDF',
-            LabelTemplate: 'ECOM26_84_001'
+            LabelTemplate: 'ECOM26_84_001',
         },
         ShipTimestamp: dhl.getIsoDateTimeGmt(),
         PickupLocationCloseTime: '23:59',
@@ -45,7 +45,7 @@ const req = {
                     City: 'Prague',
                     PostalCode: '14800',
                     CountryCode: 'CZ',
-                }
+                },
             },
             Recipient: {
                 Contact: {
@@ -59,8 +59,8 @@ const req = {
                     City: 'Firenze',
                     PostalCode: '50127',
                     CountryCode: 'IT',
-                }
-            }
+                },
+            },
         },
         Packages: {
             RequestedPackages: {
@@ -74,9 +74,9 @@ const req = {
                     Width: 34,
                     Height: 31,
                 },
-                CustomerReferences: 'TEST CZ-IT'
-            }
-        }
+                CustomerReferences: 'TEST CZ-IT',
+            },
+        },
     },
 };
 

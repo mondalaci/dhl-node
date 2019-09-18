@@ -18,7 +18,7 @@ const req = {
         InternationalDetail: {
             Commodities: {
                 Description: 'Computer Parts',
-            }
+            },
         },
         Ship: {
             Shipper: {
@@ -34,7 +34,7 @@ const req = {
                     City: 'Eindhoven',
                     PostalCode: '5657 ES',
                     CountryCode: 'NL',
-                }
+                },
             },
             Recipient: {
                 Contact: {
@@ -49,8 +49,8 @@ const req = {
                     City: 'Liverpool',
                     PostalCode: 'AA21 9AA',
                     CountryCode: 'GB',
-                }
-            }
+                },
+            },
         },
         Packages: {
             RequestedPackages: {
