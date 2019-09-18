@@ -1,4 +1,3 @@
-const fs = require('fs');
 const soap = require('soap');
 const format = require('xml-formatter');
 const lookup = require('country-data').lookup;
