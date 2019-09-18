@@ -14,7 +14,7 @@ const req = {
             },
             UnitOfMeasurement: 'SI',
         },
-        PickupTimestamp: '2019-09-26T12:59:00 GMT+01:00',
+        PickupTimestamp: dhl.getIsoDateTime(),
         InternationalDetail: {
             Commodities: {
                 Description: 'Computer Parts',
