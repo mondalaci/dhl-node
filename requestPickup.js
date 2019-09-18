@@ -7,7 +7,7 @@ const dhl = require('./index');
 const req = {
     PickUpShipment: {
         ShipmentInfo: {
-            ServiceType:'U',
+            ServiceType: 'U',
             Billing: {
                 ShipperAccountNumber: 140582622,
                 ShippingPaymentType: 'S',
