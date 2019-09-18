@@ -47,15 +47,15 @@ const liveExpressRateBookUrl = `${liveUrlPrefix}/expressRateBook?WSDL`;
 const testExpressRateBookUrl = `${testUrlPrefix}/expressRateBook?WSDL`;
 const liveGlDhlExpressTrackUrl = `${liveUrlPrefix}/glDHLExpressTrack?WSDL`;
 const testGlDhlExpressTrackUrl = `${testUrlPrefix}/glDHLExpressTrack?WSDL`;
-const liveRequestPickupkUrl = `${liveUrlPrefix}/requestPickup?WSDL`;
-const testRequestPickupkUrl = `${testUrlPrefix}/requestPickup?WSDL`;
+const liveRequestPickupUrl = `${liveUrlPrefix}/requestPickup?WSDL`;
+const testRequestPickupUrl = `${testUrlPrefix}/requestPickup?WSDL`;
 
 module.exports = {
     rateRequest: function(auth, req) {
         return wsdlRequest(liveExpressRateBookUrl, 'getRateRequest', auth, req);
     },
     requestPickup: function(auth, req) {
-        return wsdlRequest(liveRequestPickupkUrl, 'PickUpRequest', auth, req);
+        return wsdlRequest(liveRequestPickupUrl, 'PickUpRequest', auth, req);
     },
     shipmentRequest: function(auth, req) {
         return wsdlRequest(liveExpressRateBookUrl, 'createShipmentRequest', auth, req);
@@ -67,7 +67,7 @@ module.exports = {
         return wsdlRequest(testExpressRateBookUrl, 'getRateRequest', auth, req);
     },
     testRequestPickup: function(auth, req) {
-        return wsdlRequest(testRequestPickupkUrl, 'PickUpRequest', auth, req);
+        return wsdlRequest(testRequestPickupUrl, 'PickUpRequest', auth, req);
     },
     testShipmentRequest: function(auth, req) {
         return wsdlRequest(testExpressRateBookUrl, 'createShipmentRequest', auth, req);
