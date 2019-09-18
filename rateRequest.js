@@ -41,7 +41,7 @@ const req = {
             ShipTimestamp: '2018-02-14T12:00:00GMT-06:00',
             UnitOfMeasurement: 'SU',
             Content: 'NON_DOCUMENTS',
-            DeclaredValue: '0000000200',
+            DeclaredValue: 200,
             DeclaredValueCurrecyCode: 'USD',
             PaymentInfo: 'DDP',
             Account: auth.accountNumber
