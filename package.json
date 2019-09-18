@@ -1,7 +1,7 @@
 {
   "name": "dhl-node",
   "version": "1.0.0",
-  "description": "DHL Express Global Web Services from node.js",
+  "description": "MyDHL API node.js client",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
