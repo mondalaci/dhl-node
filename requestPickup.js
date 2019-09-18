@@ -9,7 +9,7 @@ const req = {
         ShipmentInfo: {
             ServiceType: 'U',
             Billing: {
-                ShipperAccountNumber: 140582622,
+                ShipperAccountNumber: auth.accountNumber,
                 ShippingPaymentType: 'S',
             },
             UnitOfMeasurement: 'SI',
