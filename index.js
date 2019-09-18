@@ -22,8 +22,13 @@ function wsdlRequest(wsdlUrl, method, auth, req) {
             client.on('response', responseXml => {
                 res.responseXml = responseXml;
             });
-console.log(client)
-            client[method].euExpressRateBook_providerServices_PickUpRequest_Port.PickUpRequest(req, function(err, response) {
+
+            let clientMethod = client[method];
+            if (method === 'PickUpRequest') {
+                clientMethod = clientMethod.euExpressRateBook_providerServices_PickUpRequest_Port.PickUpRequest;
+            }
+
+            clientMethod(req, function(err, response) {
                 if (err) {
                     reject(err);
                 }
