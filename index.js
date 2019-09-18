@@ -45,35 +45,31 @@ const liveUrlPrefix = 'https://wsbexpress.dhl.com/gbl';
 const testUrlPrefix = 'https://wsbexpress.dhl.com/sndpt';
 const liveExpressRateBookUrl = `${liveUrlPrefix}/expressRateBook?WSDL`;
 const testExpressRateBookUrl = `${testUrlPrefix}/expressRateBook?WSDL`;
-const liveGlDhlExpressTrackUrl = `${liveUrlPrefix}/glDHLExpressTrack?WSDL`;
-const testGlDhlExpressTrackUrl = `${testUrlPrefix}/glDHLExpressTrack?WSDL`;
-const liveRequestPickupUrl = `${liveUrlPrefix}/requestPickup?WSDL`;
-const testRequestPickupUrl = `${testUrlPrefix}/requestPickup?WSDL`;
 
 module.exports = {
     rateRequest: function(auth, req) {
         return wsdlRequest(liveExpressRateBookUrl, 'getRateRequest', auth, req);
     },
     requestPickup: function(auth, req) {
-        return wsdlRequest(liveRequestPickupUrl, 'PickUpRequest', auth, req);
+        return wsdlRequest(`${liveUrlPrefix}/requestPickup?WSDL`, 'PickUpRequest', auth, req);
     },
     shipmentRequest: function(auth, req) {
         return wsdlRequest(liveExpressRateBookUrl, 'createShipmentRequest', auth, req);
     },
     trackingRequest: function(auth, req) {
-        return wsdlRequest(liveGlDhlExpressTrackUrl, 'trackShipmentRequest', auth, req);
+        return wsdlRequest(`${liveUrlPrefix}/glDHLExpressTrack?WSDL`, 'trackShipmentRequest', auth, req);
     },
     testRateRequest: function(auth, req) {
         return wsdlRequest(testExpressRateBookUrl, 'getRateRequest', auth, req);
     },
     testRequestPickup: function(auth, req) {
-        return wsdlRequest(testRequestPickupUrl, 'PickUpRequest', auth, req);
+        return wsdlRequest(`${testUrlPrefix}/requestPickup?WSDL`, 'PickUpRequest', auth, req);
     },
     testShipmentRequest: function(auth, req) {
         return wsdlRequest(testExpressRateBookUrl, 'createShipmentRequest', auth, req);
     },
     testTrackingRequest: function(auth, req) {
-        return wsdlRequest(testGlDhlExpressTrackUrl, 'trackShipmentRequest', auth, req);
+        return wsdlRequest(`${testUrlPrefix}/glDHLExpressTrack?WSDL`, 'trackShipmentRequest', auth, req);
     },
     getIsoDateTime: function() {
         return (new Date).toISOString();
