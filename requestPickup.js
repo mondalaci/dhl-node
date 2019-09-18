@@ -5,71 +5,67 @@ const auth = require('./auth');
 const dhl = require('./index');
 
 const req = {
-    'pickupreq:PickUpRequest': {
-        'pickupreq:PickUpRequest': {
-            MessageId: 2364878234817650001982134234,
-            PickUpShipment: {
-                ShipmentInfo: {
-                    ServiceType:'U',
-                    Billing: {
-                        ShipperAccountNumber: 140582622,
-                        ShippingPaymentType: 'S',
-                    },
-                    UnitOfMeasurement: 'SI',
+    MessageId: 2364878234817650001982134234,
+    PickUpShipment: {
+        ShipmentInfo: {
+            ServiceType:'U',
+            Billing: {
+                ShipperAccountNumber: 140582622,
+                ShippingPaymentType: 'S',
+            },
+            UnitOfMeasurement: 'SI',
+        },
+        PickupTimestamp: '2018-01-26T12:59:00 GMT+01:00',
+        PickupLocationCloseTime: '17:00',
+        SpecialPickupInstruction: 'Collect at reception',
+        PickupLocation: 'Receptoin',
+        InternationalDetail: {
+            Commodities: {
+                NumberOfPieces: 1,
+                Description: 'Computer Parts',
+            }
+        },
+        Ship: {
+            Shipper: {
+                Contact: {
+                    PersonName: 'Topaz',
+                    CompanyName: 'DHL Express',
+                    PhoneNumber: '+31 6 53464291',
+                    EmailAddress: 'Topaz.Test@dhl.com',
+                    MobilePhoneNumber: '+31 6 53464291',
                 },
-                PickupTimestamp: '2018-01-26T12:59:00 GMT+01:00',
-                PickupLocationCloseTime: '17:00',
-                SpecialPickupInstruction: 'Collect at reception',
-                PickupLocation: 'Receptoin',
-                InternationalDetail: {
-                    Commodities: {
-                        NumberOfPieces: 1,
-                        Description: 'Computer Parts',
-                    }
-                },
-                Ship: {
-                    Shipper: {
-                        Contact: {
-                            PersonName: 'Topaz',
-                            CompanyName: 'DHL Express',
-                            PhoneNumber: '+31 6 53464291',
-                            EmailAddress: 'Topaz.Test@dhl.com',
-                            MobilePhoneNumber: '+31 6 53464291',
-                        },
-                        Address: {
-                            StreetLines: 'GloWS',
-                            City: 'Eindhoven',
-                            PostalCode: '5657 ES',
-                            CountryCode: 'NL',
-                        }
-                    },
-                    Recipient: {
-                        Contact: {
-                            PersonName: 'Jack Jones',
-                            CompanyName: 'J and J Company',
-                            PhoneNumber: '+44 25 77884444',
-                            EmailAddress: 'jack@jjcompany.com',
-                            MobilePhoneNumber: '+44 5 88648666',
-                        },
-                        Address: {
-                            StreetLines: 'Penny lane',
-                            City: 'Liverpool',
-                            PostalCode: 'AA21 9AA',
-                            CountryCode: 'GB',
-                        }
-                    }
-                },
-                Packages: {
-                    RequestedPackages: { // number="1">
-                        Weight: '12.0',
-                        Dimensions: {
-                            Length: 70,
-                            Width: 21,
-                            Height: 44,
-                        },
-                        CustomerReferences: 'My-PU-Call-1',
-                    }
+                Address: {
+                    StreetLines: 'GloWS',
+                    City: 'Eindhoven',
+                    PostalCode: '5657 ES',
+                    CountryCode: 'NL',
                 }
+            },
+            Recipient: {
+                Contact: {
+                    PersonName: 'Jack Jones',
+                    CompanyName: 'J and J Company',
+                    PhoneNumber: '+44 25 77884444',
+                    EmailAddress: 'jack@jjcompany.com',
+                    MobilePhoneNumber: '+44 5 88648666',
+                },
+                Address: {
+                    StreetLines: 'Penny lane',
+                    City: 'Liverpool',
+                    PostalCode: 'AA21 9AA',
+                    CountryCode: 'GB',
+                }
+            }
+        },
+        Packages: {
+            RequestedPackages: { // number="1">
+                Weight: '12.0',
+                Dimensions: {
+                    Length: 70,
+                    Width: 21,
+                    Height: 44,
+                },
+                CustomerReferences: 'My-PU-Call-1',
             }
         }
     }
