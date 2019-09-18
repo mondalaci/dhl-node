@@ -5,7 +5,6 @@ const auth = require('./auth');
 const dhl = require('./index');
 
 const req = {
-    MessageId: 2364878234817650001982134234,
     PickUpShipment: {
         ShipmentInfo: {
             ServiceType:'U',
@@ -16,12 +15,8 @@ const req = {
             UnitOfMeasurement: 'SI',
         },
         PickupTimestamp: '2019-09-26T12:59:00 GMT+01:00',
-        PickupLocationCloseTime: '17:00',
-        SpecialPickupInstruction: 'Collect at reception',
-        PickupLocation: 'Receptoin',
         InternationalDetail: {
             Commodities: {
-                NumberOfPieces: 1,
                 Description: 'Computer Parts',
             }
         },
