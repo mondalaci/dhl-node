@@ -38,7 +38,7 @@ const req = {
                 },
             },
         },
-        ShipTimestamp: '2018-02-14T12:00:00GMT-06:00',
+        ShipTimestamp: dhl.getIsoDateTimeGmt(),
         UnitOfMeasurement: 'SU',
         Content: 'NON_DOCUMENTS',
         DeclaredValue: 200,
