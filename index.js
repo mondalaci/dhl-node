@@ -4,6 +4,7 @@ const format = require('xml-formatter');
 const lookup = require('country-data').lookup;
 
 function wsdlRequest(wsdlUrl, method, auth, req) {
+    console.log(wsdlUrl)
     return new Promise((resolve, reject) => {
         const res = {};
         soap.createClient(wsdlUrl, function(err, client) {
@@ -21,8 +22,8 @@ function wsdlRequest(wsdlUrl, method, auth, req) {
             client.on('response', responseXml => {
                 res.responseXml = responseXml;
             });
-
-            client[method](req, function(err, response) {
+console.log(client)
+            client[method].euExpressRateBook_providerServices_PickUpRequest_Port.PickUpRequest(req, function(err, response) {
                 if (err) {
                     reject(err);
                 }
@@ -41,10 +42,15 @@ const liveExpressRateBookUrl = `${liveUrlPrefix}/expressRateBook?WSDL`;
 const testExpressRateBookUrl = `${testUrlPrefix}/expressRateBook?WSDL`;
 const liveGlDhlExpressTrackUrl = `${liveUrlPrefix}/glDHLExpressTrack?WSDL`;
 const testGlDhlExpressTrackUrl = `${testUrlPrefix}/glDHLExpressTrack?WSDL`;
+const liveRequestPickupkUrl = `${liveUrlPrefix}/requestPickup?WSDL`;
+const testRequestPickupkUrl = `${testUrlPrefix}/requestPickup?WSDL`;
 
 module.exports = {
     rateRequest: function(auth, req) {
         return wsdlRequest(liveExpressRateBookUrl, 'getRateRequest', auth, req);
+    },
+    requestPickup: function(auth, req) {
+        return wsdlRequest(liveRequestPickupkUrl, 'PickUpRequest', auth, req);
     },
     shipmentRequest: function(auth, req) {
         return wsdlRequest(liveExpressRateBookUrl, 'createShipmentRequest', auth, req);
@@ -54,6 +60,9 @@ module.exports = {
     },
     testRateRequest: function(auth, req) {
         return wsdlRequest(testExpressRateBookUrl, 'getRateRequest', auth, req);
+    },
+    testRequestPickup: function(auth, req) {
+        return wsdlRequest(testRequestPickupkUrl, 'PickUpRequest', auth, req);
     },
     testShipmentRequest: function(auth, req) {
         return wsdlRequest(testExpressRateBookUrl, 'createShipmentRequest', auth, req);
