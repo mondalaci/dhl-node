@@ -3,7 +3,6 @@ const format = require('xml-formatter');
 const lookup = require('country-data').lookup;
 
 function wsdlRequest(wsdlUrl, method, auth, req) {
-    console.log(wsdlUrl)
     return new Promise((resolve, reject) => {
         const res = {};
         soap.createClient(wsdlUrl, function(err, client) {
