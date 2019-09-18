@@ -58,20 +58,20 @@ const req = {
             }
         },
         Packages: {
-            RequestedPackages: { // number="1">
+            RequestedPackages: {
                 attributes: {
                     number: 1,
                 },
-                Weight: '12.0',
+                Weight: 12.0,
                 Dimensions: {
                     Length: 70,
                     Width: 21,
                     Height: 44,
                 },
                 CustomerReferences: 'My-PU-Call-1',
-            }
-        }
-    }
+            },
+        },
+    },
 };
 
 (async function() {
