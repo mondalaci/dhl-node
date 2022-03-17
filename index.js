@@ -34,7 +34,7 @@ function wsdlRequest(wsdlUrl, method, auth, req) {
                 resolve(res);
             });
 
-            res.requestXml = format(client.lastRequest);
+            res.requestXml = format(client.lastRequest).replace(auth.password, '**********');
         });
     });
 }
