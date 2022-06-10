@@ -1,6 +1,6 @@
 {
   "name": "dhl-node",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "MyDHL API node.js client",
   "type": "module",
   "exports": "./index.js",
