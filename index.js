@@ -2,7 +2,7 @@ const soap = require('soap');
 const format = require('xml-formatter');
 const lookup = require('country-data').lookup;
 
-function wsdlRequest(wsdlUrl, method, auth, req) {
+async function wsdlRequest(wsdlUrl, method, auth, req) {
     return new Promise((resolve, reject) => {
         const res = {};
         soap.createClient(wsdlUrl, function(err, client) {
@@ -27,14 +27,16 @@ function wsdlRequest(wsdlUrl, method, auth, req) {
             }
 
             clientMethod(req, function(err, response) {
+                const requestXml = format(client.lastRequest).replace(auth.password, '**********');
                 if (err) {
+                    err.requestXml = requestXml;
                     reject(err);
+                } else {
+                    res.requestXml = requestXml;
+                    res.response = response;
+                    resolve(res);
                 }
-                res.response = response;
-                resolve(res);
             });
-
-            res.requestXml = format(client.lastRequest).replace(auth.password, '**********');
         });
     });
 }
@@ -45,29 +47,30 @@ const liveExpressRateBookUrl = `${liveUrlPrefix}/expressRateBook?WSDL`;
 const testExpressRateBookUrl = `${testUrlPrefix}/expressRateBook?WSDL`;
 
 module.exports = {
-    rateRequest: function(auth, req) {
-        return wsdlRequest(liveExpressRateBookUrl, 'getRateRequest', auth, req);
+    rateRequest: async function(auth, req) {
+        const res = await wsdlRequest(liveExpressRateBookUrl, 'getRateRequest', auth, req);
+        return res;
     },
-    requestPickup: function(auth, req) {
-        return wsdlRequest(`${liveUrlPrefix}/requestPickup?WSDL`, 'PickUpRequest', auth, req);
+    requestPickup: async function(auth, req) {
+        return await wsdlRequest(`${liveUrlPrefix}/requestPickup?WSDL`, 'PickUpRequest', auth, req);
     },
-    shipmentRequest: function(auth, req) {
-        return wsdlRequest(liveExpressRateBookUrl, 'createShipmentRequest', auth, req);
+    shipmentRequest: async function(auth, req) {
+        return await wsdlRequest(liveExpressRateBookUrl, 'createShipmentRequest', auth, req);
     },
-    trackingRequest: function(auth, req) {
-        return wsdlRequest(`${liveUrlPrefix}/glDHLExpressTrack?WSDL`, 'trackShipmentRequest', auth, req);
+    trackingRequest: async function(auth, req) {
+        return await wsdlRequest(`${liveUrlPrefix}/glDHLExpressTrack?WSDL`, 'trackShipmentRequest', auth, req);
     },
-    testRateRequest: function(auth, req) {
-        return wsdlRequest(testExpressRateBookUrl, 'getRateRequest', auth, req);
+    testRateRequest: async function(auth, req) {
+        return await wsdlRequest(testExpressRateBookUrl, 'getRateRequest', auth, req);
     },
-    testRequestPickup: function(auth, req) {
-        return wsdlRequest(`${testUrlPrefix}/requestPickup?WSDL`, 'PickUpRequest', auth, req);
+    testRequestPickup: async function(auth, req) {
+        return await wsdlRequest(`${testUrlPrefix}/requestPickup?WSDL`, 'PickUpRequest', auth, req);
     },
-    testShipmentRequest: function(auth, req) {
-        return wsdlRequest(testExpressRateBookUrl, 'createShipmentRequest', auth, req);
+    testShipmentRequest: async function(auth, req) {
+        return await wsdlRequest(testExpressRateBookUrl, 'createShipmentRequest', auth, req);
     },
-    testTrackingRequest: function(auth, req) {
-        return wsdlRequest(`${testUrlPrefix}/glDHLExpressTrack?WSDL`, 'trackShipmentRequest', auth, req);
+    testTrackingRequest: async function(auth, req) {
+        return await wsdlRequest(`${testUrlPrefix}/glDHLExpressTrack?WSDL`, 'trackShipmentRequest', auth, req);
     },
     getIsoDateTime: function() {
         return (new Date).toISOString();
