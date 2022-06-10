@@ -2,7 +2,11 @@
   "name": "dhl-node",
   "version": "1.0.1",
   "description": "MyDHL API node.js client",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=14.16"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
