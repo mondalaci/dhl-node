@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const format = require('xml-formatter');
-const auth = require('./auth');
-const dhl = require('./index');
+import fs from 'node:fs';
+import format from 'xml-formatter';
+import auth from './auth.js';
+import {getIsoDateTime, testRequestPickup} from './index.js';
 
 const req = {
     PickUpShipment: {
@@ -14,7 +14,7 @@ const req = {
             },
             UnitOfMeasurement: 'SI',
         },
-        PickupTimestamp: dhl.getIsoDateTime(),
+        PickupTimestamp: getIsoDateTime(),
         InternationalDetail: {
             Commodities: {
                 Description: 'Computer Parts',
@@ -69,9 +69,7 @@ const req = {
     },
 };
 
-(async function() {
-    const res = await dhl.testRequestPickup(auth, req);
-    console.log(JSON.stringify(res.response, null, 4));
-    fs.writeFileSync('requestPickup.request.xml', format(res.requestXml));
-    fs.writeFileSync('requestPickup.response.xml', res.responseXml);
-})();
+const res = await testRequestPickup(auth, req);
+console.log(JSON.stringify(res.response, null, 4));
+fs.writeFileSync('requestPickup.request.xml', format(res.requestXml));
+fs.writeFileSync('requestPickup.response.xml', res.responseXml);

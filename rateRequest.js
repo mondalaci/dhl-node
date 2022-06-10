@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const format = require('xml-formatter');
-const auth = require('./auth');
-const dhl = require('./index');
+import fs from 'node:fs';
+import format from 'xml-formatter';
+import auth from './auth.js';
+import {getIsoDateTimeGmt, testRateRequest} from './index.js';
 
 const req = {
     ClientDetail: {
@@ -38,7 +38,7 @@ const req = {
                 },
             },
         },
-        ShipTimestamp: dhl.getIsoDateTimeGmt(),
+        ShipTimestamp: getIsoDateTimeGmt(),
         UnitOfMeasurement: 'SU',
         Content: 'NON_DOCUMENTS',
         DeclaredValue: 200,
@@ -48,9 +48,7 @@ const req = {
     },
 };
 
-(async function() {
-    const res = await dhl.testRateRequest(auth, req);
-    console.log(JSON.stringify(res.response, null, 4));
-    fs.writeFileSync('rateRequest.response.xml', res.responseXml);
-    fs.writeFileSync('rateRequest.request.xml', format(res.requestXml));
-})();
+const res = await testRateRequest(auth, req);
+console.log(JSON.stringify(res.response, null, 4));
+fs.writeFileSync('rateRequest.response.xml', res.responseXml);
+fs.writeFileSync('rateRequest.request.xml', format(res.requestXml));

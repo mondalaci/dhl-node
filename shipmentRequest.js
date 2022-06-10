@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const format = require('xml-formatter');
-const auth = require('./auth');
-const dhl = require('./index');
+import fs from 'node:fs';
+import format from 'xml-formatter';
+import auth from './auth.js';
+import {getIsoDateTimeGmt, testShipmentRequest} from './index.js';
 
 const req = {
     RequestedShipment: {
@@ -16,7 +16,7 @@ const req = {
             LabelType: 'PDF',
             LabelTemplate: 'ECOM26_84_001',
         },
-        ShipTimestamp: dhl.getIsoDateTimeGmt(),
+        ShipTimestamp: getIsoDateTimeGmt(),
         PickupLocationCloseTime: '23:59',
         SpecialPickupInstruction: 'fragile items',
         PickupLocation: 'west wing 3rd Floor',
@@ -80,11 +80,9 @@ const req = {
     },
 };
 
-(async function() {
-    const res = await dhl.testShipmentRequest(auth, req);
-    console.log(JSON.stringify(res.response, null, 4));
-    fs.writeFileSync('shipmentRequest.request.xml', format(res.requestXml));
-    fs.writeFileSync('shipmentRequest.response.xml', res.responseXml);
-    const graphicImage = Buffer.from(res.response.LabelImage[0].GraphicImage, 'base64');
-    fs.writeFileSync('shipmentRequest.response.pdf', graphicImage);
-})();
+const res = await testShipmentRequest(auth, req);
+console.log(JSON.stringify(res.response, null, 4));
+fs.writeFileSync('shipmentRequest.request.xml', format(res.requestXml));
+fs.writeFileSync('shipmentRequest.response.xml', res.responseXml);
+const graphicImage = Buffer.from(res.response.LabelImage[0].GraphicImage, 'base64');
+fs.writeFileSync('shipmentRequest.response.pdf', graphicImage);

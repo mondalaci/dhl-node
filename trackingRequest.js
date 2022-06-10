@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const format = require('xml-formatter');
-const auth = require('./auth');
-const dhl = require('./index');
+import fs from 'node:fs';
+import format from 'xml-formatter';
+import auth from './auth.js';
+import {getIsoDateTime, getMessageReference, trackingRequest} from './index.js';
 
 const req = {
     trackingRequest: {
         TrackingRequest: {
             Request: {
                 ServiceHeader: {
-                    MessageTime: dhl.getIsoDateTime(),
-                    MessageReference: dhl.getMessageReference(),
+                    MessageTime: getIsoDateTime(),
+                    MessageReference: getMessageReference(),
                 },
             },
             AWBNumber: {
@@ -22,9 +22,7 @@ const req = {
     },
 };
 
-(async function() {
-    const res = await dhl.trackingRequest(auth, req);
-    console.log(JSON.stringify(res.response, null, 4));
-    fs.writeFileSync('trackingRequest.response.xml', res.responseXml);
-    fs.writeFileSync('trackingRequest.request.xml', format(res.requestXml));
-})();
+const res = await trackingRequest(auth, req);
+console.log(JSON.stringify(res.response, null, 4));
+fs.writeFileSync('trackingRequest.response.xml', res.responseXml);
+fs.writeFileSync('trackingRequest.request.xml', format(res.requestXml));
