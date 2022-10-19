@@ -6,7 +6,7 @@ A node client that implements the MyDHL API which is based on SOAP.
 
 This client implements the `RateRequest`, `RequestPickup`, `ShipmentRequest`, and `TrackingRequest` requests. The related scripts of this repo allow you to easily test these requests, and adapt them to your needs.
 
-See the [API documentation](doc/DHL_EXPRESS_MyDHL_API_-_Developer_Guide_-_v1.1.pdf) and the [valid values](doc/Reference_Data.xlsx) of various fields.
+See the [API documentation](doc/DHL_EXPRESS_-_MyDHL_API_-_SOAP_Developer_Guide_-_v2.16.pdf) and the [valid values](doc/Reference_Data.xlsx) of various fields.
 
 ## Authentication
 
