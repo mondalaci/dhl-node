@@ -30,6 +30,30 @@ const req = {
                 UnitPrice: 10,
                 CustomsValue: 1,
             },
+            ExportDeclaration: {
+                InvoiceDate: '2022-10-10',
+                ExportLineItems: {
+                    ExportLineItem: [
+                        {
+                            CommodityCode: '8471.60.2000',
+                            ItemNumber: 1,
+                            Quantity: 5,
+                            QuantityUnitOfMeasurement: 'PCS',
+                            ItemDescription: 'Item name',
+                            UnitPrice: 10,
+                            NetWeight: 1,
+                            GrossWeight: 1,
+                            ManufacturingCountryCode: 'HU',
+                        },
+                    ],
+                },
+                OtherCharges: {
+                    OtherCharge: {
+                        ChargeValue: 10,
+                        ChargeType: 'DELIV',
+                    },
+                },
+            },
             Content: 'NON_DOCUMENTS',
         },
         Ship: {
